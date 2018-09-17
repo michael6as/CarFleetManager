@@ -3,6 +3,7 @@
 let CarModel = require('../core/car_model');
 let CarTypeEnum = require('../core/car_type');
 
+// Base class for handling the car fleet. This is the basic class so there are some default implementations to check sanity of the code
 class DbHandler{
     constructor(connParams){
         this.connectionParams = connParams

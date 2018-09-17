@@ -1,6 +1,5 @@
 let DbHandler = require('./db_handler')
 let CarModel = require('../core/car_model');
-let CarTypeEnum = require('../core/car_type');
 let redis = require('redis')
 
 class RedisHandler extends DbHandler{
