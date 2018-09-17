@@ -45,8 +45,7 @@ Run the following command in the directory:
 ```
 
 ## Few Notes
-I have few minor things left but these are primarily CSS tweaks to make the UI more responsive:
-* CSS Tweaks
+I have few minor things left but these are primarily CSS tweaks to make the UI more responsive
 
 ### Built with
 
