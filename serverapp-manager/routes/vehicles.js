@@ -1,29 +1,29 @@
 var express = require('express');
 var router = express.Router();
 
-var DbHandler = require('../datahandler/db_handler');
-let dbhandler = new DbHandler({'host':'localhost','port':1995});
+let CarModel = require('../core/car_model');
+let Initializer = require('../config/initializer');
 
-/* GET vehicles listing. */
-router.get('/', function(req, res, next) {
+let dbHandler = Initializer.dbHandler;
+
+router.get('/', async function(req, res, next) {
     try{
-        let foundcars = dbhandler.getVehicles(req.query);
+        let foundcars = await dbHandler.getVehicles(req.query);
         res.send(foundcars);
     }catch (e) {
         console.log(e)
     }
 });
 
-router.post('/', function (req, res, next) {
-    for(let vehicle in dbhandler.sampleVehicles){
-        if(vehicle.carId === req.body['carId']){
-            vehicle = req.body;
-            res.send(dbhandler.sampleVehicles);
-            return;
-        }
-    }
-    dbhandler.addVehicle(req.body['carName'], req.body['dateCreated'], req.body['carType'], req.body['lastUpdated']);
-    res.send(dbhandler.sampleVehicles);
+router.post('/', async function (req, res, next) {
+    let carObj = new CarModel(req.body)
+    let newCars = await dbHandler.addVehicle(carObj)
+    res.send(newCars);
+});
+
+router.delete('/', async function (req, res, next){
+    let newCars = await dbHandler.deleteVehicle(req.query['deleteId'])
+    res.send(newCars);
 });
 
 module.exports = router;

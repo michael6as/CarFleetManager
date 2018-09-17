@@ -1,5 +1,3 @@
-// import _ from 'lodash'
-import uuid from 'uuid'
 import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
@@ -14,6 +12,7 @@ const myApi = axios.create({
   }
 })
 
+// Function for generating url with parameters encoded
 let createUrlEncoded = function (query) {
   let queryUrl = '?'
   for (let keyVal in query) {
@@ -33,36 +32,40 @@ export default new Vuex.Store({
   },
   mutations: {
     selectCar (state, car) {
+      // When this changes all the components are reacted and changed
       state.selectedCar = car
     },
     getCars (state, query) {
+      console.log('About to GET cars with this query' + query)
       let getUrl = 'vehicles'
       if (query !== undefined) {
         getUrl += createUrlEncoded(query)
       }
       myApi.get(getUrl).then(res => {
-        if (res.data.length > 0) {
-          state.allCars = res.data
-        }
+        state.allCars = res.data
       }).catch(e => {
-        alert('no new cars ' + e.message)
+        // TODO: Change to a toast mechanism for better UX
+        console.log('Error While getting Cars from server' + e)
       })
     },
     updateCars (state, car) {
-      if (!car.id) {
-        car.id = uuid()
-      }
+      console.log('About to POST to URL /vehicles with body' + car)
       myApi.post('vehicles', car).then(res => {
         state.allCars = res.data
       }).catch(e => {
-        console.log(e)
+        console.log('Error occurred while updating the car fleet ' + e)
       })
     },
-    deleteCar (state, car) {
-      myApi.delete('vehicles', car).then(res => {
+    deleteCar (state, carId) {
+      console.log('About to DELETE this ID' + carId)
+      let deleteUrl = 'vehicles'
+      if (carId !== undefined) {
+        deleteUrl += createUrlEncoded(carId)
+      }
+      myApi.delete(deleteUrl).then(res => {
         state.allCars = res.data
       }).catch(e => {
-        console.log(e)
+        console.log('Error occurred while deleting a car ' + e)
       })
       state.selectedCar = null
     }

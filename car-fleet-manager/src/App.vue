@@ -1,16 +1,14 @@
 <template>
   <div id="app">
-    <filter-bar/>
     <car-list/>
     <car-form/>
   </div>
 </template>
 
 <script>
-  //import SearchBar from './components/search-bar'
-  import CarList from './components/cars-list'
-  import CarForm from './components/car-form'
-  import FilterBar from './components/filter-bar'
+import CarList from './components/cars-list'
+import CarForm from './components/car-form'
+import FilterBar from './components/filter-bar'
 
 export default {
   name: 'App',
@@ -57,7 +55,22 @@ input::placeholder{
 }
 
 .header-md{
-  font-size: 16px;
+  font-size: 32px;
   font-weight: bold;
+  margin-bottom: 3%;
+}
+
+.header{
+  height:64px;
+  border-bottom: solid 1px #e6e9f2;
+  padding-left: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.header-mdb{
+  font-size: 64px;
+  font-weight: bold;
+  border-bottom: solid 1px #e6e9f2;
 }
 </style>

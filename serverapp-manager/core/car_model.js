@@ -3,15 +3,19 @@
 let uuid = require('uuid');
 
 class CarModel {
-    constructor(car_name, time_created, car_type, last_updated, car_id=null){
-        if(car_id == null){
-            car_id = uuid()
+    constructor(vehicleDict){
+        if(vehicleDict['carId'] == null){
+            this.carId = uuid();
+            this.timeCreated = new Date().getTime();
+            this.lastUpdated = this.timeCreated;
+        } else{
+            this.carId = vehicleDict['carId'];
+            this.timeCreated = vehicleDict['timeCreated'];
+            this.lastUpdated = vehicleDict['lastUpdated'];
         }
-        this.carId = car_id;
-        this.carName = car_name;
-        this.timeCreated = time_created;
-        this.carType = car_type;
-        this.lastUpdated = last_updated;
+        this.carName = vehicleDict['carName'];
+        this.carType = vehicleDict['carType'];
+        this.picture = vehicleDict['picture'];
     }
 }
 
