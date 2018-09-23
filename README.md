@@ -35,6 +35,7 @@ Run the following command in the directory:
 ```
     npm run dev
 ```
+If this command failed you might need to delete 'package-lock.json' and check if there is a 'static' dir
 
 ### Run the Server side
 
