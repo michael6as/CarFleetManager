@@ -3,18 +3,12 @@ by Michael Assyag
 
 Full server & client for managing car fleet with saving the fleet state in an external resource
 
-## Getting Started
-
-The crawler runs only on console at the moment.
-
-Important: I haven't had the time to make the requirements.txt to install properly. I looked it up and found that many people had the strugle for installing internal dependencies via 'pip3 install -r requirements.txt'
-
 ### Prerequisites
 
 You need to have the following installed:
-*[Node.js](https://nodejs.org/en/)
-*[npm](https://www.npmjs.com/)
-*[Redis](https://redis.io/)
+* [Node.js](https://nodejs.org/en/)
+* [npm](https://www.npmjs.com/)
+* [Redis](https://redis.io/)
 
 ### Getting Started
 
